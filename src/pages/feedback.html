@@ -1,0 +1,71 @@
+<h1 class="text-3xl font-bold mb-4">User Feedback</h1>
+
+<div class="bg-gray-800 p-6 rounded-xl animate-fadeIn">
+
+  <h2 class="text-xl font-semibold mb-3">Leave Feedback</h2>
+
+  <!-- RATING -->
+  <div id="rating" class="flex gap-2 text-3xl cursor-pointer mb-3">
+    ★ ★ ★ ★ ★
+  </div>
+
+  <!-- FEEDBACK BOX -->
+  <textarea id="fbText"
+    class="w-full p-4 rounded bg-gray-900 border border-gray-700 mb-4"
+    rows="3"
+    placeholder="Write your thoughts..."
+  ></textarea>
+
+  <!-- BUTTON -->
+  <button id="submitFB"
+    class="bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded transition">
+    Submit Feedback
+  </button>
+
+  <hr class="border-gray-700 my-6">
+
+  <h2 class="text-xl font-semibold mb-3">Previous Feedback</h2>
+  <div id="fbList" class="space-y-4 opacity-90"></div>
+
+</div>
+
+<script type="module">
+  import { getFeedback, saveFeedback } from "../utils/localCloud.ts";
+
+  let rating = 0;
+
+  const stars = document.querySelectorAll("#rating span");
+  stars.forEach((star, index) => {
+    star.addEventListener("click", () => {
+      rating = index + 1;
+      stars.forEach((s, i) =>
+        s.style.color = i < rating ? "gold" : "gray"
+      );
+    });
+  });
+
+  document.getElementById("submitFB").onclick = () => {
+    const text = (document.getElementById("fbText") as HTMLTextAreaElement).value;
+    if (!text || rating === 0) return alert("Fill everything!");
+
+    saveFeedback(text, rating);
+    loadFeedback();
+  };
+
+  function loadFeedback() {
+    const list = document.getElementById("fbList");
+    const fb = getFeedback();
+
+    list.innerHTML = fb
+      .map(
+        (x) => `
+      <div class="bg-gray-900 p-4 rounded-lg border border-gray-700">
+        <p>${"★".repeat(x.rating)}</p>
+        <p class="opacity-80">${x.fb}</p>
+      </div>`
+      )
+      .join("");
+  }
+
+  loadFeedback();
+</script>

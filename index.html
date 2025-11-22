@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloxy Dashboard</title>
+
+  <link rel="icon" type="image/png" href="public/favicon.png">
+  <link rel="stylesheet" href="src/assets/styles/globals.css">
+
+  <script type="module" src="/src/main.ts"></script>
+</head>
+
+<body class="bg-gray-900 text-white">
+
+<div class="flex h-screen">
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar" class="w-64 bg-gray-800 p-5 flex flex-col gap-3">
+      <h1 class="text-xl font-bold mb-4">Bloxy Panel</h1>
+
+      <button class="nav-btn" data-page="home">Home</button>
+      <button class="nav-btn" data-page="experience">Experiences</button>
+      <button class="nav-btn" data-page="ugc">UGC Clothing</button>
+      <button class="nav-btn" data-page="feedback">Feedback</button>
+      <button class="nav-btn" data-page="site">Site Updates</button>
+      <button class="nav-btn" data-page="setting">Settings</button>
+  </aside>
+
+  <!-- MAIN APP -->
+  <main id="app" class="flex-1 p-6 overflow-y-auto">
+    Loading...
+  </main>
+
+</div>
+
+<!-- FOOTER -->
+<div id="footer"></div>
+
+</body>
+</html>
