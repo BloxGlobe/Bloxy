@@ -3,9 +3,8 @@
 @tailwind utilities;
 
 .nav-btn {
-  @apply block w-full text-left px-3 py-2 rounded hover:bg-gray-700 transition;
+  @apply w-full text-left px-3 py-2 rounded bg-gray-700/30 hover:bg-gray-700 transition;
 }
-
-body {
-  font-family: ui-sans-serif, system-ui;
+.nav-btn.active {
+  @apply bg-gray-600 font-semibold;
 }

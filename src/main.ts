@@ -1,23 +1,9 @@
-import { loadPage } from "./app";
-import { renderSidebar } from "./components/sidebar";
-import { renderFooter } from "./components/footer";
+import { navigate } from "./router";
 
-renderSidebar();
-renderFooter();
-
-// Initial load
-const initial = location.hash ? location.hash.slice(1) : "home";
-loadPage(initial);
-
-// Handle navigation
-window.addEventListener("popstate", () => {
-  const page = location.hash.slice(1) || "home";
-  loadPage(page);
+document.querySelectorAll(".nav-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        navigate(btn.dataset.page);
+    });
 });
 
-document.querySelectorAll(".nav-btn").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const page = btn.getAttribute("data-page")!;
-    loadPage(page);
-  });
-});
+navigate("home"); // default page
